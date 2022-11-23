@@ -1,10 +1,12 @@
 // selectors : document.querySelector('.container');
 
-let gridSpace = 25;
+
+const container = document.querySelector('.container');
+let gridSpace = 10;
 let boxWidth = 600;
 
 const addBoxes = () => {
-    const container = document.querySelector('.container');
+    
     
     for (i=0; i<`${gridSpace * gridSpace}`; i++){
         const box = document.createElement('div');
@@ -12,7 +14,39 @@ const addBoxes = () => {
         box.style.cssText = `width: ${boxWidth / gridSpace}px;`;
 
         container.appendChild(box);
-        console.log('hey');
+        const boxes = document.querySelectorAll('div.box');
+        boxes.forEach(box => box.addEventListener('mouseover', () => {
+        
+                box.classList.add('painted');
+                    
+                }));
+        
+
     }
 }
 addBoxes();
+
+
+
+
+const newGrid = document.querySelector('button');
+
+newGrid.addEventListener('click', () => {
+    for (i=0; i<`${gridSpace * gridSpace}`; i++){ 
+        container.removeChild(container.firstChild);
+    }
+    
+    gridSpace = prompt('How many squares? Between 0 - 100, please.');
+    if(gridSpace === null){
+        gridSpace = 4;
+    }
+addBoxes();
+
+})
+
+
+
+
+
+
+
